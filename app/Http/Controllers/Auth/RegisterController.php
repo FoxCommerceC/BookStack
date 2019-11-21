@@ -1,6 +1,4 @@
-<?php
-
-namespace BookStack\Http\Controllers\Auth;
+<?php namespace BookStack\Http\Controllers\Auth;
 
 use BookStack\Auth\Access\EmailConfirmationService;
 use BookStack\Auth\Access\SocialAuthService;
@@ -218,6 +216,15 @@ class RegisterController extends Controller
 
         // Attempt login or fall-back to register if allowed.
         $socialUser = $this->socialAuthService->getSocialUser($socialDriver);
+
+                // only allow people with @company.com to login
+        $domain = explode("@", $socialUser->email)[1];
+        $allowDomains = array("foxcommerce.co","brodev.com");
+        if(!in_array($domain,$allowDomains)) {
+            echo "Not Allow".$socialUser->email;
+            return redirect()->to('/');
+        }
+
         if ($action == 'login') {
             try {
                 return $this->socialAuthService->handleLoginCallback($socialDriver, $socialUser);

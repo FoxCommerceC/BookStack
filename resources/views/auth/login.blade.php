@@ -7,12 +7,12 @@
         <div class="my-l">&nbsp;</div>
 
         <div class="card content-wrap auto-height">
-            <h1 class="list-heading">{{ Str::title(trans('auth.log_in')) }}</h1>
+            <h1 class="list-heading">{{ Illuminate\Support\Str::title(trans('auth.log_in')) }}</h1>
 
             <form action="{{ url('/login') }}" method="POST" id="login-form" class="mt-l">
                 {!! csrf_field() !!}
 
-                <div class="stretch-inputs">
+                <div class="Illuminate\Support\Stretch-inputs">
                     @include('auth.forms.login.' . $authMethod)
                 </div>
 
@@ -27,7 +27,7 @@
                     </div>
 
                     <div class="text-right">
-                        <button class="button">{{ Str::title(trans('auth.log_in')) }}</button>
+                        <button class="button">{{ Illuminate\Support\Str::title(trans('auth.log_in')) }}</button>
                     </div>
                 </div>
 
@@ -45,7 +45,7 @@
                 @endforeach
             @endif
 
-            @if(setting('registration-enabled', false))
+            @if(setting('regiIlluminate\Support\Stration-enabled', false))
                 <div class="text-center pb-s">
                     <hr class="my-l">
                     <a href="{{ url('/register') }}">{{ trans('auth.dont_have_account') }}</a>
